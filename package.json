@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "lint ./source",
     "start": "NODE_ENV=production node ./source/server.js",
-    "debug": "nodemon ./source/server.js" 
+    "debug": "nodemon ./source/server.js"
   },
   "keywords": [],
   "author": "",

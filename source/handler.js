@@ -57,13 +57,32 @@ const addBookHandler = (request, h) => {
 };
 
 const getAllBooksHandler = (request, h) => {
-    const books = bookshelf.map((bo) => {
+    const {name, reading, finished} = request.query;
+    let booklist;
+    const mapBool = (status) => {
+        return status === '1';
+    };
+
+    // seleksi alam berdasarkan query
+    if (name !== undefined) {
+        booklist = bookshelf.filter((b) => b.name.toLowerCase().indexOf(name.toLowerCase()) !== -1 );
+    } else if (reading !== undefined) {
+        booklist = bookshelf.filter((b) => b.reading == mapBool(reading));
+    } else if (finished !== undefined) {
+        booklist = bookshelf.filter((b) => b.finished == mapBool(finished));
+    } else {
+        booklist = bookshelf;
+    }
+
+    // hanya tampilkan tiga parameter
+    const books = booklist.map((bo) => {
         return {
             id: bo.id,
             name: bo.name,
             publisher: bo.publisher,
         };
     });
+
     const response = h.response({
         status: 'success',
         data: {
