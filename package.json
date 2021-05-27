@@ -1,0 +1,23 @@
+{
+  "name": "gerald-bookshelf-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "lint": "lint ./source",
+    "start": "NODE_ENV=production node ./source/server.js",
+    "debug": "nodemon ./source/server.js" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^20.1.3",
+    "nanoid": "^3.1.23",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
