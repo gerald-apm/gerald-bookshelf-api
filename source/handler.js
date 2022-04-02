@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 /* eslint-disable new-cap */
 /* eslint-disable max-len */
 const {nanoid} = require('nanoid');
@@ -41,12 +42,21 @@ const addBookHandler = (request, h) => {
             return response;
         }
     } catch (error) {
-        const response = h.response({
-            status: 'fail',
-            message: error.message,
-        });
-        response.code(400);
-        return response;
+        if (error instanceof SyntaxError) {
+            const response = h.response({
+                status: 'fail',
+                message: error.message,
+            });
+            response.code(400);
+            return response;
+        } else {
+            const response = h.response({
+                status: 'fail',
+                message: error.message,
+            });
+            response.code(404);
+            return response;
+        }
     }
     const response = h.response({
         status: 'error',
